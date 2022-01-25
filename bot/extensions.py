@@ -28,9 +28,9 @@ class Convertor:
         except ValueError:
             raise APIException(f'Не удалось обработать количество {amount}!')
 
-        r = requests.get(f"https://min-api.cryptocompare.com/data/price?fsym={base}&tsyms={sym}")
+        r = requests.get(f"https://min-api.cryptocompare.com/data/price?fsym={base_key}&tsyms={sym_key}")
         resp = json.loads(r.content)
-        new_price = resp['rates'][sym_key] * amount
+        new_price = resp[sym_key] * amount
         new_price = round(new_price, 3)
         message = f"Цена {amount} {base} в {sym} : {new_price}"
         return message

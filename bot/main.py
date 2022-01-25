@@ -22,11 +22,10 @@ def values(message: telebot.types.Message):
 
 @bot.message_handler(content_types=['text'])
 def converter(message: telebot.types.Message):
-    values = message.text.split('')
+    values = message.text.split(' ')
     try:
         if len(values) != 3:
             raise APIException('Неверное количество параметров!')
-
         answer = Convertor.get_price(*values)
     except APIException as e:
         bot.reply_to(message, f"Ошибка в команде:\n{e}")
